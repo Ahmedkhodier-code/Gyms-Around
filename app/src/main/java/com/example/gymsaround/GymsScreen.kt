@@ -36,7 +36,7 @@ fun GymsScreen() {
     LazyColumn {
         items(vm.state) { gym ->
             GymItem(gym) {
-                vm.toggleFaveState(gym.gymId)
+                vm.toggleFaveState(gym.id)
                 Log.i("TAG1", "GymItem: $it")
             }
         }

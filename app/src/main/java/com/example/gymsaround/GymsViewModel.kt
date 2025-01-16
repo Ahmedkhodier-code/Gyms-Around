@@ -38,7 +38,7 @@ class GymsViewModel(private val stateHandle: SavedStateHandle) : ViewModel() {
 
     fun toggleFaveState(gymId: Int) {
         val gyms = state.toMutableList()
-        val itemIndex = gyms.indexOfFirst { it.gymId == gymId }
+        val itemIndex = gyms.indexOfFirst { it.id == gymId }
         gyms[itemIndex] = gyms[itemIndex].copy(isFav = !gyms[itemIndex].isFav)
         storeSelectedGym(gyms[itemIndex])
         state = gyms
@@ -47,15 +47,15 @@ class GymsViewModel(private val stateHandle: SavedStateHandle) : ViewModel() {
 
     private fun storeSelectedGym(gym: Gym) {
         val savedHandleList = stateHandle.get<List<Int>?>(FAV_IDS).orEmpty().toMutableList()
-        if (gym.isFav) savedHandleList.add(gym.gymId)
-        else savedHandleList.remove(gym.gymId)
+        if (gym.isFav) savedHandleList.add(gym.id)
+        else savedHandleList.remove(gym.id)
         stateHandle[FAV_IDS] = savedHandleList
     }
 
     private fun List<Gym>.restoreSelectedGym(): List<Gym> {
         stateHandle.get<List<Int>?>(FAV_IDS)?.let { savedId ->
             savedId.forEach { gymId ->
-                this.find { it.gymId == gymId }?.isFav = true
+                this.find { it.id == gymId }?.isFav = true
             }
         }
         return this
