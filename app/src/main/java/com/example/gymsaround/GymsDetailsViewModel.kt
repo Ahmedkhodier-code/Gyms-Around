@@ -16,10 +16,10 @@ class GymsDetailsViewModel : ViewModel() {
     init {
         val retrofit: Retrofit = retrofit
         apiService = retrofit.create(GymsApiService::class.java)
-        getGyms(6)
+        getGym(6)
     }
 
-    private fun getGyms(id: Int) {
+    private fun getGym(id: Int) {
         viewModelScope.launch {
             val gym = getGymsFromDB(id)
             state.value = gym
