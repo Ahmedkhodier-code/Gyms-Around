@@ -1,7 +1,6 @@
 package com.example.gymsaround
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -9,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 
-class GymsDetailsViewModel(private val stateHandle: SavedStateHandle) : ViewModel() {
+class GymsDetailsViewModel : ViewModel() {
     val state = mutableStateOf<Gym?>(null)
 
     private var apiService: GymsApiService
